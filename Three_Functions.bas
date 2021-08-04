@@ -3,7 +3,7 @@
 Function PVDA(r, c, m, g, i, n)
 
 'PVDA computes the value of delayed perpetuity_
-    or delayed annuity by choosing the type in the function
+or delayed annuity by choosing the type in the function
 
 'r is interest rate
 'c is the amount of payment
