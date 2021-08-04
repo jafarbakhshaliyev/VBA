@@ -1,0 +1,48 @@
+Function PVDA(r, c, m, g, i, n)
+
+'PVDA computes the value of delayed perpetuity _
+or delayed annuity by choosing the type in the function
+
+'r is interest rate
+'c is the amount of payment
+'m is the length of delay for initial payment
+'g is growth rate for periodic payments
+'i is type of valuation (=1 when type is delayed perpetuity, i = 2 when type is delayed annuity)
+'n = number of annuity payments
+
+'Report missing inputs:
+
+    If IsMissing(r) Then
+        msg = "Please write the interest rate appropriately (as %)"
+        MsgBox msg
+    ElseIf IsMissing(c) Then
+        msg = "Please write the amount of payment appropriately"
+        MsgBox msg
+    ElseIf IsMissing(m) Then
+        msg = "Please write the length of delay for initial payment appropriately"
+        MsgBox msg
+    ElseIf IsMissing(g) Then
+        msg = "Please write the growth rate appropriately or 0% if there is no growth rate"
+        MsgBox msg
+    ElseIf IsMissing(i) Then
+        msg = "Please write type of valuation appropriately (1 if delayed perpetuity, 2 if delayed annuity"
+        MsgBox msg
+    ElseIf i = 2 Then
+        If IsMissing(n) Then
+        msg = "Please write number of annuity payment appropriately"
+        MsgBox msg
+        End If
+        
+  End If
+
+    
+    If i = 1 Then 'perpetuity type
+      PVDA = 1 / (1 + r) ^ m * c / (r - g)
+    ElseIf i = 2 Then 'annuity type
+      PVDA = 1 / (1 + r) ^ m * c / (r - g) * (1 - ((1 + g) / (1 + r)) ^ n)
+    Else
+      msg1 = "Please write type of valuation correctly (1 if delayed perpetuity, 2 if delayed annuity)"
+      MsgBox msg1
+    End If
+    
+End Function
