@@ -1,3 +1,5 @@
+'First Function
+
 Function PVDA(r, c, m, g, i, n)
 
 'PVDA computes the value of delayed perpetuity _
@@ -45,4 +47,32 @@ or delayed annuity by choosing the type in the function
       MsgBox msg1
     End If
     
+End Function
+
+
+'Second Function
+
+Function Return_risk(w1, w2, w3, mean1, mean2, mean3, Optional std1, Optional std2, Optional std3, Optional corr12, Optional corr13, Optional corr23)
+
+'Return_risk function finds expected return of three stocks if you do not give standard values of stocks and also finds standard deviation of the three _
+ stocks with given weights
+ 
+If IsMissing(std1) Then
+
+    expected_return = w1 * mean1 + w2 * mean2 + w3 * mean3
+
+    result = expected_return
+
+Else
+
+    Var = w1 * w1 * std1 * std1 + w2 * w2 * std2 * std2 + w3 * w3 * std3 * std3 + 2 * w1 * w2 * std1 * std2 * corr12 + 2 * w1 * w3 * std1 * std3 * corr13 + 2 * w2 * w3 * std2 * std3 * corr23
+
+    stdofreturn = Sqr(Var)
+
+    result = stdofreturn
+
+End If
+
+    Return_risk = result
+
 End Function
