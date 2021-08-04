@@ -52,6 +52,7 @@ End Function
 
 'Second Function
 
+
 Function Return_risk(w1, w2, w3, mean1, mean2, mean3, Optional std1, Optional std2, Optional std3, Optional corr12, Optional corr13, Optional corr23)
 
 'Return_risk function finds expected return of three stocks if you do not give standard values of stocks and also finds standard deviation of the three _
@@ -76,3 +77,29 @@ End If
     Return_risk = result
 
 End Function
+
+
+'Third Function:
+
+
+Function VarCovar(rng As Range) As Variant
+
+'VarCovar function finds variance-covariance matrix of returns of stocks
+
+    Dim i As Integer
+    Dim j As Integer
+    Dim numcols As Integer
+    numcols = rng.Columns.Count
+    numrows = rng.Rows.Count
+    Dim matrix() As Double
+    ReDim matrix(numcols - 1, numcols - 1)
+
+    For i = 1 To numcols
+        For j = 1 To numcols
+            matrix(i - 1, j - 1) = Application.WorksheetFunction.Covariance_S(rng.Columns(i), rng.Columns(j))
+        Next j
+    Next i
+    VarCovar = matrix
+    
+End Function
+
